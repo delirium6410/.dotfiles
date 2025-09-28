@@ -1,0 +1,22 @@
+{ ... }: 
+{
+  networking.hostName = "icarus";
+
+  machine.core.enable = true;
+  machine.core.laptop = true;
+  machine.hidpi.enable = true;
+  
+  machine.cpu-intel.enable = true;
+  machine.gpu-intel.enable = true;
+
+  machine.kde.enable = true;
+  machine.stylix.enable = true;
+
+  imports =
+    [
+      ./hardware-configuration.nix
+    ]
+    ++ map (moduleFile: ./users + ("/" + moduleFile)) (builtins.attrNames (builtins.readDir ./users));
+
+  system.stateVersion = "25.05";
+}
