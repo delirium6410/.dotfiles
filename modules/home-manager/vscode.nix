@@ -11,7 +11,6 @@
       profiles.default = {
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
-        extensions = [];
         userSettings = {};
       };
     };

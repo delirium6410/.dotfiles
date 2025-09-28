@@ -6,5 +6,6 @@
 
   config = lib.mkIf config.machine.fwupd.enable {
     services.fwupd.enable = true;
+    hardware.enableRedistributableFirmware = true;
   };
 }

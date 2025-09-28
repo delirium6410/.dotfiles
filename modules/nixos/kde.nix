@@ -6,17 +6,27 @@
 
   config = lib.mkIf config.machine.kde.enable {
     machine.sddm.enable = true;
+    machine.dolphin.enable = true;
 
     services.desktopManager.plasma6.enable = true;
-    services.tumbler.enable = true;
-    environment.systemPackages = with pkgs;[
-      kdePackages.kdeplasma-addons
-      kdePackages.kcalc
-      kdePackages.dolphin
-
-      kdePackages.ark
-      p7zip
-      unrar
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
+      elisa
+      kate
+      okular
+      gwenview
+      kdeconnect-kde
+      kwrited
+      konsole
+      khelpcenter
     ];
+
+    environment.systemPackages = with pkgs;[
+      kdePackages.kcalc
+      kdePackages.kio-admin
+      kdePackages.kio-extras
+      kdePackages.kio-fuse
+    ];
+
+    programs.dconf.enable = true;
   };
 }

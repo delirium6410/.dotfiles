@@ -5,7 +5,7 @@
   };
 
   config = lib.mkIf config.machine.core.enable {
-    # ssh, git, monolith, miniserve, benchmarking/monitoring, archiving, fd, ?
+    # ssh, monolith, miniserve, benchmarking/monitoring, archiving, fd, ?
     machine.bash.enable = true;
     machine.bat.enable = true;
     machine.direnv.enable = true;
