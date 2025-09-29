@@ -17,6 +17,6 @@
     };
 
     environment.systemPackages = with pkgs; [ elegant-sddm ];
-    security.pam.services.sddm.kwallet.enable = true;
+    security.pam.services.sddm.kwallet.enable = lib.mkIf config.machine.kde.enable true;
   };
 }
