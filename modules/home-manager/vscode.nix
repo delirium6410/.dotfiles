@@ -11,6 +11,9 @@
       profiles.default = {
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.nix
+        ];
         userSettings = {};
       };
     };

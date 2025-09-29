@@ -17,6 +17,11 @@
       ./hardware-configuration.nix
     ]
     ++ map (moduleFile: ./users + ("/" + moduleFile)) (builtins.attrNames (builtins.readDir ./users));
-
+  
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+  };
+  
   system.stateVersion = "25.05";
 }
