@@ -13,11 +13,11 @@
       enable = true;
       extraPackages = with pkgs; [ 
         steamtinkerlaunch 
-        umu-launcher
       ];
       platformOptimizations = { 
         enable = true;
       };
     };
+    environment.systemPackages = with pkgs; [ umu-launcher ];
   };
 }
