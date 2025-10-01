@@ -1,5 +1,9 @@
-{ config, lib, ... }: 
+{ config, lib, inputs, ... }: 
 {
+  imports = [
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
+  ];
+  
   options = {
     machine.pipewire.enable = lib.mkEnableOption "";
   };
@@ -12,6 +16,11 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      lowLatency = lib.mkIf config.machine.gaming.enable {
+        enable = true;
+        quantum = 64;
+        rate = 48000;
+      };
     };
   };
 }

@@ -1,6 +1,5 @@
 { config, lib, ... }: 
 {
-  # users.allowNoPasswordLogin = true;
   users.users.admin = {
     isNormalUser = true;
     home = "/home/admin";

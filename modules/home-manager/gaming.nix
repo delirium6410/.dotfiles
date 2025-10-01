@@ -5,14 +5,14 @@
   };
 
   config = lib.mkIf config.machine.gaming.enable {
-    #machine.lutris.enable
-    #machine.heroic.enable
-    #machine.bottles.enable
+    machine = {
+      lutris.enable = true;
+      heroic.enable = true;
 
-    #machine.prismlauncher.enable
-    #machine.airshipper.enable
-    #machine.technic-launcher.enable
-    #machine.osu-lazer-bin.enable
-    #machine.osu-stable.enable
+      airshipper.enable = true;
+      osu.enable = true;
+      prismlauncher.enable = true;
+      technic-launcher.enable = true;
+    };
   };
 }
