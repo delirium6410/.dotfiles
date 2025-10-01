@@ -118,5 +118,7 @@
     impermanence.url = "github:nix-community/impermanence";
 
     deploy-rs.url = "github:serokell/deploy-rs";
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 }

@@ -8,6 +8,7 @@
   machine.onlyoffice.enable = true;
   machine.thunderbird.enable = true;
   machine.vscode.enable = true;
+  machine.lutris.enable = true;
 
   home = {
     username = "admin";
