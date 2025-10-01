@@ -7,7 +7,6 @@
   config = lib.mkIf config.machine.git.enable {
     programs.git = {
       enable = true;
-      userEmail = "libra@mailbox.org";
       userName = "delirium6410";
       extraConfig = {
         init = {
