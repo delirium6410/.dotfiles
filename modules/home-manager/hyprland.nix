@@ -15,12 +15,6 @@
       terminal = "ghostty";
       extraConfig = {
         modi = "drun,run";
-        display-drun = "";
-        display-run = "";
-        display-filebrowser = "";
-        display-window = "";
-        drun-display-format = "{name}";
-    	  window-format = "{w} · {c} · {t}";
       };
     };
 

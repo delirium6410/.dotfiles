@@ -1,6 +1,14 @@
 { ... }: 
 {
   machine.core.enable = true;
+  
+  machine.bitwarden.enable = true;
+  machine.discord.enable = true;
+  machine.firefox.enable = true;
+  machine.gaming.enable = true;
+  machine.onlyoffice.enable = true;
+  machine.thunderbird.enable = true;
+  machine.vscode.enable = true;
 
   home = {
     username = "admin";
@@ -11,7 +19,7 @@
   };
 
   nixpkgs.config = {
-    allowUnfree = false;
-    allowUnfreePredicate = _: false;
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
   };
 }
