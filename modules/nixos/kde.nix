@@ -25,6 +25,7 @@
       kdePackages.kio-admin
       kdePackages.kio-extras
       kdePackages.kio-fuse
+      protonvpn-gui
     ];
   };
 }

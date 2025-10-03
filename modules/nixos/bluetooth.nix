@@ -9,5 +9,9 @@
       enable = true;
       powerOnBoot = lib.mkForce false;
     };
+    
+    environment.systemPackages = with pkgs; [
+      bluez
+    ];
   };
 }
