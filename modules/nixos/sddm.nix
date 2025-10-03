@@ -13,10 +13,10 @@
       wayland.enable = true;
       enableHidpi = lib.mkIf config.machine.hidpi.enable true;
       autoNumlock = true;
-      theme = "elegant-sddm";
+      #theme = "elegant-sddm";
     };
 
-    environment.systemPackages = with pkgs; [ elegant-sddm ];
+    #environment.systemPackages = with pkgs; [ elegant-sddm ];
     security.pam.services.sddm.kwallet.enable = lib.mkIf config.machine.kde.enable true;
   };
 }
