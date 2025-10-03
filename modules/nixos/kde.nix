@@ -26,7 +26,5 @@
       kdePackages.kio-extras
       kdePackages.kio-fuse
     ];
-
-    programs.dconf.enable = true;
   };
 }

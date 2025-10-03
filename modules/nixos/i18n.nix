@@ -7,6 +7,7 @@
   config = lib.mkIf config.machine.i18n.enable {
     services.automatic-timezoned.enable = true;
     networking.timeServers = ["pool.ntp.org"];
+    time.hardwareClockInLocalTime = true;
     
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {

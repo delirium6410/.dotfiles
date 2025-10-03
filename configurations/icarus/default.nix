@@ -1,4 +1,4 @@
-{ ... }: 
+{ lib, ... }: 
 {
   networking.hostName = "icarus";
 
@@ -11,6 +11,10 @@
 
   machine.kde.enable = true;
   machine.stylix.enable = true;
+
+  boot.kernel.sysctl = lib.mkForce {
+    "vm.swappiness" = 80;
+  };
 
   imports =
     [

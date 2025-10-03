@@ -8,5 +8,6 @@
     networking.networkmanager.enable = true;
     # consider using iptables
     networking.firewall.enable = true;
+    services.resolved.enable = true;
   };
 }
