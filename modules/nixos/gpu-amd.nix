@@ -20,13 +20,13 @@
       VDPAU_DRIVER = "radeonsi";
     };
 
-    environment.systemPackages = [ pkgs.lact ];
-    systemd.packages = [ pkgs.lact ];
-    systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+    #environment.systemPackages = [ pkgs.lact ];
+    #systemd.packages = [ pkgs.lact ];
+    #systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
-    boot.kernelParams = [
-      "amdgpu.ppfeaturemask=0x4000"
-    ];
+    #boot.kernelParams = [
+    #  "amdgpu.ppfeaturemask=0x4000"
+    #];
 
     # move to monitoring/debugging stack
     #environment.systemPackages = with pkgs; [
