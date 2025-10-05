@@ -9,6 +9,7 @@
   machine.onlyoffice.enable = true;
   machine.thunderbird.enable = true;
   machine.vscode.enable = true;
+  machine.stylix.enable = true;
 
   home = {
     username = "admin";
