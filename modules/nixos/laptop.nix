@@ -7,7 +7,6 @@
   config = lib.mkIf config.machine.laptop.enable {
     boot = {
       kernelParams = [ "mem_sleep_default=deep" ];
-      initrd.systemd.enable = true;
     };
 
     services.logind = {

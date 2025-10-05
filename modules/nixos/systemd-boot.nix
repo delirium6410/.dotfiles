@@ -8,16 +8,16 @@
     boot = {
       loader = {
         efi.canTouchEfiVariables = true;
+        timeout = 3;
         systemd-boot = {
           enable = true;
           editor = false;
-          timeout = 3;
           configurationLimit = 5;
         };
       };
       initrd = {
         systemd.enable = true;
-        verbose = false;
+        verbose = true;
       };
     };
   };
