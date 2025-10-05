@@ -3,6 +3,7 @@
   machine.core.enable = true;
   
   machine.bitwarden.enable = true;
+  machine.brave.enable = true;
   machine.discord.enable = true;
   machine.firefox.enable = true;
   machine.gaming.enable = true;

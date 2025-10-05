@@ -5,6 +5,10 @@
   };
   
   config = lib.mkIf config.machine.stylix.enable {
-    stylix.targets.firefox.profileNames = [ "default" ];
+    stylix.targets.firefox = {
+      enable = true;
+      profileNames = [ "default" ];
+      colorTheme.enable = true;
+    };
   };
 }

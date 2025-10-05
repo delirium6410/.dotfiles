@@ -9,12 +9,16 @@
       gamemode.enable = true;
       gamescope.enable = true;
 
-      retroarch.enable = true;
       steam.enable = true;
-      
       wine.enable = true;
     };
-
+    
+    services.libinput.enable = true;
+    hardware.opentabletdriver = {
+      enable = true;
+      daemon.enable = true;
+    };
+    
     boot.kernelParams = [
       "tsc=reliable"
       "clocksource=tsc"
