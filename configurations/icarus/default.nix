@@ -3,7 +3,7 @@
   networking.hostName = "icarus";
 
   machine.core.enable = true;
-  machine.core.laptop = true;
+  machine.laptop.enable = true;
   machine.hidpi.enable = true;
   
   machine.cpu-intel.enable = true;
@@ -11,6 +11,8 @@
 
   machine.kde.enable = true;
   machine.stylix.enable = true;
+
+  powerManagement.cpuFreqGovernor = "performance";
 
   boot.kernel.sysctl = lib.mkForce {
     "vm.swappiness" = 80;

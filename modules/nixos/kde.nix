@@ -27,5 +27,9 @@
       kdePackages.kio-fuse
       protonvpn-gui
     ];
+    
+    environment.sessionVariables = {
+      KWIN_DRM_NO_AMS = "1";
+    };
   };
 }
