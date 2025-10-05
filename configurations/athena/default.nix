@@ -11,6 +11,8 @@
   machine.kde.enable = true;
   machine.stylix.enable = true;
 
+  powerManagement.cpuFreqGovernor = "performance";
+  
   imports =
     [
       ./hardware-configuration.nix

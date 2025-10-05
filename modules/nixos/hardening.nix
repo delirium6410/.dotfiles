@@ -13,7 +13,7 @@
       lockKernelModules = false;
       forcePageTableIsolation = true;
       polkit.enable = true;
-
+      rtkit.enable = true;
       apparmor = {
         enable = true;
         killUnconfinedConfinables = true;

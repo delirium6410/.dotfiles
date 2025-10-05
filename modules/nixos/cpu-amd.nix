@@ -6,5 +6,6 @@
 
   config = lib.mkIf config.machine.cpu-amd.enable {
     hardware.cpu.amd.updateMicrocode = true;
+    boot.kernelParams = [ "amd_pstate=active" ];
   };
 }

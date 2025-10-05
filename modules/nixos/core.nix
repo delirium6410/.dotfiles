@@ -11,6 +11,7 @@
       bolt.enable = true;
       fstrim.enable = true;
       fwupd.enable = true;
+      hardening.enable = true;
       home-manager.enable = true;
       i18n.enable = true;
       networkmanager.enable = true;

@@ -13,6 +13,7 @@
           enable = true;
           editor = false;
           configurationLimit = 5;
+          memtest86.enable = true;
         };
       };
       initrd = {
