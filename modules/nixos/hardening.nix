@@ -25,7 +25,7 @@
       defaults = ["nodev" "nosuid" "noexec"];
     in {
       "/boot".options = defaults;
-      "/var/log".options = defaults;
+      #"/var/log".options = defaults;
     };
 
     boot = {

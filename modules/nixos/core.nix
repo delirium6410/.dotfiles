@@ -15,7 +15,6 @@
       home-manager.enable = true;
       i18n.enable = true;
       networkmanager.enable = true;
-      nix-ld.enable = true;
       nix.enable = true;
       pipewire.enable = true;
       plymouth.enable = true;
