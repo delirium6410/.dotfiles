@@ -23,10 +23,10 @@
         PLATFORM_PROFILE_ON_AC = "performance";
         PLATFORM_PROFILE_ON_BAT = "balanced";
 
-        RUNTIME_PM_ON_AC = "on";
-        RUNTIME_PM_ON_BAT = "on";
+        RUNTIME_PM_ON_AC = "auto";
+        RUNTIME_PM_ON_BAT = "auto";
 
-        RUNTIME_PM_DRIVER_DENYLIST = "i915 nvme";
+        # RUNTIME_PM_DRIVER_DENYLIST = "i915 nvme";
       };
     };
   };

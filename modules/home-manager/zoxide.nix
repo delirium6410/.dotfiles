@@ -5,6 +5,9 @@
   };
 
   config = lib.mkIf config.machine.zoxide.enable {
-    programs.zoxide.enable = true;
+    programs.zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+    };
   };
 }

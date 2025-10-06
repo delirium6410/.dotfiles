@@ -5,8 +5,8 @@
   machine.core.enable = true;
   machine.gaming.enable = true;
   
-  machine.cpu-intel.enable = true;
-  machine.gpu-amd.enable = true;
+  machine.cpu_intel.enable = true;
+  machine.gpu_amd.enable = true;
 
   machine.kde.enable = true;
   machine.stylix.enable = true;

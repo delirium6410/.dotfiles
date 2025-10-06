@@ -6,17 +6,11 @@
   machine.laptop.enable = true;
   machine.hidpi.enable = true;
   
-  machine.cpu-intel.enable = true;
-  machine.gpu-intel.enable = true;
+  machine.cpu_intel.enable = true;
+  machine.gpu_intel.enable = true;
 
   machine.kde.enable = true;
   machine.stylix.enable = true;
-
-  powerManagement.cpuFreqGovernor = "performance";
-
-  boot.kernel.sysctl = lib.mkForce {
-    "vm.swappiness" = 80;
-  };
 
   imports =
     [

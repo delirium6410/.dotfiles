@@ -3,7 +3,6 @@
   options = {
     machine.xdg-userdirs.enable = lib.mkEnableOption "";
   };
-  # somehow doesnt spawn directories
   config = lib.mkIf config.machine.xdg-userdirs.enable {
     xdg.userDirs = {
       enable = true;
