@@ -6,7 +6,7 @@
 
   config = lib.mkIf config.machine.core.enable {
     machine = {
-      # add pam, yubikey, secrets, ssh, lanzaboote, persistence, disko, coolercontrol, monitoring
+      # add pam, yubikey, secrets, ssh, lanzaboote, persistence, disko, coolercontrol
       bluetooth.enable = true;
       bolt.enable = true;
       fstrim.enable = true;

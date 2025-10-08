@@ -7,7 +7,7 @@
   config = lib.mkIf config.machine.laptop.enable {
     machine.tlp.enable = true;
 
-    services.fprintd.enable = true;
+    services.fprintd.enable = true; # fprintd-enroll
     services.thermald.enable = true;
 
     services.upower = {

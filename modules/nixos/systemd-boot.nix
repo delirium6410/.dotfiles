@@ -8,7 +8,7 @@
     boot = {
       loader = {
         efi.canTouchEfiVariables = true;
-        timeout = 3;
+        timeout = 0;
         systemd-boot = {
           enable = true;
           editor = false;

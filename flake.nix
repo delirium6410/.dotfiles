@@ -88,9 +88,7 @@
             nameValuePair (removeSuffix ".nix" module) (import ./modules/${module})))
         ])
 
-        # flake modules
         {
-          #flake-stylix = stylix.homeManagerModules.stylix;
         }
       ];
   };

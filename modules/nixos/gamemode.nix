@@ -18,7 +18,7 @@
             apply_gpu_optimisations = "accept-responsibility";
             gpu_device = 0;
           }
-          (lib.mkIf config.machine.gpu-amd.enable {
+          (lib.mkIf config.machine.gpu_amd.enable {
             amd_performance_level = "high";
           })
         ];

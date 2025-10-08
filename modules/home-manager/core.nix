@@ -10,6 +10,7 @@
     machine.bat.enable = true;
     machine.direnv.enable = true;
     machine.eza.enable = true;
+    machine.fzf.enable = true;
     machine.ghostty.enable = true;
     machine.git.enable = true;
     machine.navi.enable = true;
