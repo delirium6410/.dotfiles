@@ -11,7 +11,7 @@
     };
 
     machine = {
-      # add pam, yubikey, secrets, ssh, lanzaboote, persistence, disko, coolercontrol
+      # add pam, yubikey, secrets, ssh, lanzaboote, persistence, disko
       bluetooth.enable = true;
       fstrim.enable = true;
       hardening.enable = true;

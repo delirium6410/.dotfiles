@@ -15,7 +15,7 @@
         };
       };
     };
-    programs.bash.shellAliases = lib.mkIf config.machine.bash.enable {
+    home.shellAliases = {
       ga = "git add";
       gc = "git commit";
       gca = "git commit --amend";

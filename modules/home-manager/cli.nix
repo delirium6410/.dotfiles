@@ -46,7 +46,7 @@
       cat = "bat";
       ls = "eza";
       tree = "eza --tree";
-      rg = "rg -i"
+      rg = "rg -i";
     };
   };
 }

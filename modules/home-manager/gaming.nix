@@ -10,7 +10,7 @@
 
       osu.enable = true;
       prismlauncher.enable = true;
-      airshipper.enable = true;
+      airshipper.enable = false;
     };
   };
 }

@@ -20,12 +20,14 @@
       khelpcenter
     ];
 
-    environment.systemPackages = with pkgs;[
+    environment.systemPackages = with pkgs; [
       kdePackages.kcalc
       kdePackages.kio-admin
       kdePackages.kio-extras
       kdePackages.kio-fuse
       protonvpn-gui
+      eog
+      clapper
     ];
     
     environment.sessionVariables = {

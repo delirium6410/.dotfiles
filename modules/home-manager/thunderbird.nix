@@ -9,7 +9,7 @@
       enable = true;
       profiles = {};
       settings =  {
-         "privacy.donottrackheader.enabled" = true; 
+        "privacy.donottrackheader.enabled" = true; 
       };
     };
   };

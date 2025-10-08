@@ -5,11 +5,12 @@
   };
 
   config = lib.mkIf config.machine.core.enable {
-    # ssh, monolith, miniserve, benchmarking/monitoring, archiving, fd, ?
+    # add ssh
     machine.bash.enable = true;
+    machine.cli.enable = true;
     machine.git.enable = true;
     machine.neovim.enable = true;
-    machine.xdg-userdirs.enable = true;
+    machine.xdg.enable = true;
 
     programs.home-manager.enable = true;
   };
