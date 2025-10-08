@@ -4,7 +4,6 @@
     machine.airshipper.enable = lib.mkEnableOption "";
     machine.prismlauncher.enable = lib.mkEnableOption "";
     machine.osu.enable = lib.mkEnableOption "";
-    };
   };
 
   config = lib.mkMerge [
@@ -17,5 +16,5 @@
     (lib.mkIf config.machine.osu.enable {
       home.packages = with pkgs; [ osu-lazer-bin ];
     })
-  ];  
+  ];
 }
