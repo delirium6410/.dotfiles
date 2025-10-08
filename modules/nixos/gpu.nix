@@ -1,12 +1,8 @@
 { config, pkgs, lib, ... }:
 {
-  options.machine = {
-    gpu_amd = {
-      enable = lib.mkEnableOption "";
-    };
-    gpu_intel = {
-      enable = lib.mkEnableOption "";
-    };
+  options = {
+    machine.gpu_amd.enable = lib.mkEnableOption "";
+    machine.gpu_intel.enable = lib.mkEnableOption "";
   };
 
   config = lib.mkMerge [

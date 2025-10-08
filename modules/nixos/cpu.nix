@@ -1,12 +1,8 @@
 { config, pkgs, lib, ... }:
 {
-  options.machine = {
-    cpu_amd = {
-      enable = lib.mkEnableOption "";
-    };
-    cpu_intel = {
-      enable = lib.mkEnableOption "";
-    };
+  options = {
+    machine.cpu_amd.enable = lib.mkEnableOption "";
+    machine.cpu_intel.enable = lib.mkEnableOption "";
   };
 
   config = lib.mkMerge [

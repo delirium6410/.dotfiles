@@ -6,11 +6,11 @@
 
   config = lib.mkIf config.machine.gaming.enable {
     machine = {
-      lutris.enable = true;
-      heroic.enable = true;
+      launchers.enable = true;
 
       osu.enable = true;
       prismlauncher.enable = true;
+      airshipper.enable = true;
     };
   };
 }

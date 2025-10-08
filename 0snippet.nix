@@ -7,11 +7,11 @@
   config = lib.mkIf config.machine.placeholder.enable {
   };
 
-  options.machine = {
-    placeholder = {
+  options = {
+    machine.placeholder = {
       enable = lib.mkEnableOption "";
     };
-    placeholder = {
+    machine.placeholder = {
       enable = lib.mkEnableOption "";
     };
   };

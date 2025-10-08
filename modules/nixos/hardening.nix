@@ -9,6 +9,7 @@
     # https://docs.arbitrary.ch/security/
     # https://docs.redhat.com/de/documentation/red_hat_enterprise_linux/8/html/security_hardening/index
     security = {
+      sudo-rs.enable = true;
       protectKernelImage = false;
       lockKernelModules = false;
       forcePageTableIsolation = true;

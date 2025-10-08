@@ -16,11 +16,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      lowLatency = lib.mkIf config.machine.gaming.enable {
-        enable = true;
-        quantum = 64;
-        rate = 48000;
-      };
     };
   };
 }

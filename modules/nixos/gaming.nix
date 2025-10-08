@@ -6,17 +6,54 @@
 
   config = lib.mkIf config.machine.gaming.enable {
     machine = {
-      gamemode.enable = true;
-      gamescope.enable = true;
-
       steam.enable = true;
       wine.enable = true;
     };
     
+    programs.gamescope = {
+      enable = true;
+      args = [
+        "--force-grab-cursor"
+        "-f"
+      ];
+    };
+
+    programs.gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+          ioprio = 0;
+          inhibit_screensaver = 1;
+        };
+        gpu = lib.mkMerge [
+          {
+            apply_gpu_optimisations = "accept-responsibility";
+            gpu_device = 0;
+          }
+          (lib.mkIf config.machine.gpu_amd.enable {
+            amd_performance_level = "high";
+          })
+        ];
+        cpu = {
+          park_cores = "no";
+          pin_cores = "no";
+        };
+      };
+    };
+
+    users.users.admin.extraGroups = [ "gamemode" ];
+
     services.libinput.enable = true;
     hardware.opentabletdriver = {
       enable = true;
       daemon.enable = true;
+    };
+
+    services.pipewire.lowLatency = {
+      enable = true;
+      quantum = 64;
+      rate = 48000;
     };
     
     boot.kernelParams = [
