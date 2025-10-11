@@ -5,6 +5,12 @@
   };
 
   config = lib.mkIf config.machine.yubikey.enable {
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    services.udev.packages = [ pkgs.yubikey-personalization ];
+
     hardware.gpgSmartcards.enable = true;
     programs.ssh.startAgent = true;
 
