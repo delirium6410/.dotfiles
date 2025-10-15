@@ -13,11 +13,15 @@
     programs.gamescope = {
       enable = true;
       args = [
+        "-W 1920"
+        "-H 1080"
         "--force-grab-cursor"
+        "--rt"
         "-f"
       ];
     };
 
+    users.users.admin.extraGroups = [ "gamemode" ];
     programs.gamemode = {
       enable = true;
       settings = {
@@ -41,26 +45,31 @@
         };
       };
     };
+    
+    # https://codeberg.org/fabiscafe/game-devices-udev
+    services = {
+      libinput.enable = true;
+      udev.packages = with pkgs; [ game-devices-udev-rules ];
+    };
 
-    users.users.admin.extraGroups = [ "gamemode" ];
-
-    services.libinput.enable = true;
     hardware.opentabletdriver = {
       enable = true;
       daemon.enable = true;
     };
-
+    
+    # https://github.com/fufexan/nix-gaming
     services.pipewire.lowLatency = {
       enable = true;
       quantum = 64;
       rate = 48000;
     };
     
+    # https://wiki.archlinux.org/title/Gaming#Improving_performance
     boot.kernelParams = [
       "tsc=reliable"
       "clocksource=tsc"
     ];
-
+    
     boot.kernel.sysctl = {
       "vm.min_free_kbytes" = 2097152; 
       "vm.watermark_scale_factor" = 500;

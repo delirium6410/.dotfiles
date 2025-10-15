@@ -3,7 +3,9 @@
   networking.hostName = "athena";
 
   machine.core.enable = true;
+  
   machine.gaming.enable = true;
+  machine.honkers-railway-launcher.enable = true;
   
   machine.cpu_intel.enable = true;
   machine.gpu_amd.enable = true;

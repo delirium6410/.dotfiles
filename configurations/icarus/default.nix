@@ -1,4 +1,4 @@
-{ lib, ... }: 
+{ lib, inputs, nixos-hardware, ... }: 
 {
   networking.hostName = "icarus";
 
@@ -15,6 +15,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      <nixos-hardware/lenovo/thinkpad/p1/3th-gen>
     ]
     ++ map (moduleFile: ./users + ("/" + moduleFile)) (builtins.attrNames (builtins.readDir ./users));
   

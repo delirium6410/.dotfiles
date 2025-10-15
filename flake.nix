@@ -1,7 +1,22 @@
 {
   description = "Home";
 
-  outputs = inputs @ { self, nixpkgs, home-manager, sops-nix, impermanence, deploy-rs, stylix, ... }:
+  outputs = inputs @ { 
+    self, 
+    nixpkgs, 
+    home-manager, 
+    sops-nix, 
+    lanzaboote, 
+    impermanence, 
+    nixos-hardware, 
+    disko, 
+    deploy-rs, 
+    nixos-anywhere, 
+    stylix, 
+    plasma-manager, 
+    aagl, 
+    ... 
+  }:
   let
     inherit (self) outputs;
 
@@ -36,7 +51,9 @@
         {
           flake-sops-nix = sops-nix.nixosModules.sops;
           flake-home-manager = home-manager.nixosModules.home-manager;
+          flake-lanzaboote = lanzaboote.nixosModules.lanzaboote;
           flake-impermanence = impermanence.nixosModules.impermanence;
+          flake-disko = disko.nixosModules.disko;
           flake-stylix = stylix.nixosModules.stylix;
           home-manager-integration = {
             home-manager = {
@@ -44,6 +61,7 @@
               sharedModules = attrsets.attrValues self.homeModules;
             };
           };
+          flake-aagl = aagl.nixosModules.default;
         }
       ];
 
@@ -89,6 +107,7 @@
         ])
 
         {
+          flake-plasma-manager = plasma-manager.homeModules.plasma-manager;
         }
       ];
   };
@@ -117,11 +136,40 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     impermanence.url = "github:nix-community/impermanence";
 
     deploy-rs.url = "github:serokell/deploy-rs";
+    
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.disko.follows = "disko";
+    };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
+
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
