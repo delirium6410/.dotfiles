@@ -5,8 +5,8 @@
   };
 
   config = lib.mkIf config.machine.cli.enable {
-    machine.zsh.enable = true;
     machine.starship.enable = true;
+    machine.zsh.enable = true;
     programs.bat.enable = true;
 
     programs.ghostty = {
@@ -77,7 +77,7 @@
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
       
-      "nsp" = "nix-shell -p";
+      ns = "nix-shell -p";
 
       cat = "bat";
       ls = "eza";
