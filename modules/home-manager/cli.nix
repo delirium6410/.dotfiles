@@ -46,7 +46,6 @@
         ".nix-defexpr/"
         ".cache/"
         ".mozilla/"
-        "node_modules"
       ];
     };
 
