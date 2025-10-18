@@ -13,6 +13,13 @@
       daemonCPUSchedPolicy = "idle";
       daemonIOSchedClass = "idle";
 
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
+        persistent = true;
+      };
+
       settings = {
         auto-optimise-store = true;
         connect-timeout = 5;
@@ -24,8 +31,9 @@
         builders-use-substitutes = true;
         max-jobs = "auto";
         keep-going = true;
-        http-connections = 50;
+        http-connections = 64;
         show-trace = true;
+        sandbox = true;
 
         experimental-features = [
           "nix-command"
@@ -48,7 +56,19 @@
         ];
       };
     };
-    
+
+    # soon^tm
+    #system.autoUpgrade = {
+    #  enable = true;
+    #  allowReboot = false;
+    #  dates = "04:00";
+    #  flake = "github:delirium6410/.dotfiles";
+    #  flags = [
+    #    "--update-input" "nixpkgs"
+    #    "--commit-lock-file"
+    #  ];
+    #};
+
     programs.nix-ld = {
       enable = true;
       libraries = with pkgs; [

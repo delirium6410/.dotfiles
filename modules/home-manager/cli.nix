@@ -78,12 +78,14 @@
       "....." = "cd ../../../..";
       
       "nsp" = "nix-shell -p";
-      "nrs" = "nixos-rebuild switch --flake";
-      "nrb" = "nixos-rebuild switch --flake";
 
       cat = "bat";
       ls = "eza";
       tree = "eza --tree";
+    };
+    
+    home.sessionVariables = {
+      TERMINAL = "ghostty";
     };
   };
 }

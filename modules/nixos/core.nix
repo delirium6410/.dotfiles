@@ -24,6 +24,7 @@
       printing.enable = true;
       systemd-boot.enable = true;
       tailscale.enable = true;
+      zsh.enable = true;
     };      
     
     services.hardware.bolt.enable = true;

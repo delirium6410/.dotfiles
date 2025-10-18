@@ -112,5 +112,9 @@
         ];
       };
     };
+    
+   home.sessionVariables = {
+      BROWSER = "firefox";
+    }; 
   };
 }

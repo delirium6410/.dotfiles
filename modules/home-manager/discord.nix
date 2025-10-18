@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 {
   options = {
     machine.discord.enable = lib.mkEnableOption "";
@@ -8,14 +8,19 @@
     programs.vesktop = {
       enable = true;
       settings = {
+        disableMinSize = true;
+      };
+
+      vencord.settings = {
         autoUpdate = false;
         autoUpdateNotification = false;
         notifyAboutUpdates = false;
+        enableSplashScreen = false;
         useQuickCss = true;
-        disableMinSize = true;
         plugins = {
           YoutubeAdblock.enabled = true;
           FakeNitro.enabled = true;
+          ReadAllNotificationsButton.enabled = true;
         };
       };
     };

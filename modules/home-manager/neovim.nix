@@ -30,5 +30,10 @@
         "text/x-nix"
       ];
     };
+    
+    home.sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
   };
 }

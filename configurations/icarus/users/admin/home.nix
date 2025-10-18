@@ -5,6 +5,7 @@
   machine.bitwarden.enable = true;
   machine.discord.enable = true;
   machine.firefox.enable = true;
+  machine.brave.enable = true;
   machine.onlyoffice.enable = true;
   machine.thunderbird.enable = true;
   machine.vscode.enable = true;

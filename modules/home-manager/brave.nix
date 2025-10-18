@@ -5,6 +5,18 @@
   };
 
   config = lib.mkIf config.machine.brave.enable {
-    home.packages = with pkgs; [ brave ];
+    programs.chromium = {
+      enable = true;
+      package = pkgs.brave;
+      extensions = [
+        "igiofjhpmpihnifddepnpngfjhkfenbp" # AutoPagerize
+        "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+        "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancement Suite
+        "gebbhagfogifgggkldgodflihgfeippi" # Return YouTube Dislike
+        "mnjggcdmjocbbbhaepdhchncahnbgone" # SponsorBlock for YouTube
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+      ];
+    };
   };
 }
