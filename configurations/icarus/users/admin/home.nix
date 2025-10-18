@@ -9,6 +9,8 @@
   machine.thunderbird.enable = true;
   machine.vscode.enable = true;
   machine.stylix.enable = true;
+  machine.yubikey-touch-detector.enable = true;
+  #machine.ssh.enable = true;
 
   home = {
     username = "admin";

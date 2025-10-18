@@ -4,10 +4,12 @@
 
   machine.core.enable = true;
   machine.laptop.enable = true;
-  machine.hidpi.enable = true;
+
+  machine.sshd.enable = true;
+  machine.yubikey.enable = true;
   
   machine.cpu_intel.enable = true;
-  machine.gpu_intel.enable = true;
+  #machine.gpu_intel.enable = true;
 
   machine.kde.enable = true;
   machine.stylix.enable = true;
@@ -15,7 +17,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      <nixos-hardware/lenovo/thinkpad/p1/3th-gen>
+      "${inputs.nixos-hardware}/lenovo/thinkpad/p1/3th-gen"
     ]
     ++ map (moduleFile: ./users + ("/" + moduleFile)) (builtins.attrNames (builtins.readDir ./users));
   

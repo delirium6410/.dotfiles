@@ -5,48 +5,85 @@
   };
 
   config = lib.mkIf config.machine.cli.enable {
+    machine.zsh.enable = true;
+    machine.starship.enable = true;
     programs.bat.enable = true;
-    programs.navi.enable = true;
-    programs.ripgrep.enable = true;
 
     programs.ghostty = {
       enable = true; 
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      installBatSyntax = true;
+      installVimSyntax = true;
+      clearDefaultKeybinds = false;
     };
 
     programs.fzf = {
       enable = true;
       enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
+    programs.zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
+    programs.navi = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
+    programs.fd = {
+      enable = true;
+      hidden = true;
+      ignores = [
+        ".git/"
+        "*.bak"
+        ".nix-profile/"
+        ".nix-defexpr/"
+        ".cache/"
+        ".mozilla/"
+        "node_modules"
+      ];
+    };
+
+    programs.ripgrep = {
+      enable = true;
+      arguments = [
+        "--glob=!.envrc"
+        "--glob=!*.lock"
+        "--glob=!generated.nix"
+        "--glob=!generated.json"
+        "--smart-case"
+        "--hidden"
+      ];
     };
 
     programs.eza = {
       enable = true;
+      git = true;
       extraOptions = [
         "--group-directories-first"
         "--header"
       ];
     };
 
-    programs.starship = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      enableTransience = true;
-      settings = {
-        nix_shell.heuristic = true;
-        shlvl.disabled = false;
-      };
-    };
-    
-    programs.zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-    };
-
     home.shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+      "....." = "cd ../../../..";
+      
+      "nsp" = "nix-shell -p";
+      "nrs" = "nixos-rebuild switch --flake";
+      "nrb" = "nixos-rebuild switch --flake";
+
       cat = "bat";
       ls = "eza";
       tree = "eza --tree";
-      rg = "rg -i";
     };
   };
 }

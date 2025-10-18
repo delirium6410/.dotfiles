@@ -6,7 +6,6 @@
 
   config = lib.mkIf config.machine.core.enable {
     # add ssh
-    machine.bash.enable = true;
     machine.cli.enable = true;
     machine.git.enable = true;
     machine.neovim.enable = true;

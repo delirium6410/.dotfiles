@@ -15,9 +15,10 @@
         };
       };
     };
+    
     home.shellAliases = {
       ga = "git add";
-      gc = "git commit";
+      gcc = "git commit";
       gca = "git commit --amend";
       gcm = "git commit -m";
       gd = "git diff";

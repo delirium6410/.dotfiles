@@ -5,21 +5,21 @@
   };
 
   config = lib.mkIf config.machine.yubikey.enable {
-    programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    services.udev.packages = [ pkgs.yubikey-personalization ];
-
-    hardware.gpgSmartcards.enable = true;
-    programs.ssh.startAgent = true;
-
     environment.systemPackages = with pkgs; [
       yubikey-manager
       yubikey-personalization
-      yubico-pam
+      yubico-piv-tool
+      yubioath-flutter
     ];
 
-    security.pam.u2f.enable = true;
+    services = {
+      pcscd = {
+        enable = true;
+        plugins = [ pkgs.yubikey-personalization ];
+      };
+      udev.packages = [ pkgs.yubikey-personalization ];
+    };
+
+    hardware.gpgSmartcards.enable = true;
   };
 }

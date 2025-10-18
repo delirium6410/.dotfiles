@@ -5,10 +5,16 @@
   };
   
   config = lib.mkIf config.machine.stylix.enable {
-    stylix.targets.firefox = {
-      enable = true;
-      profileNames = [ "default" ];
-      colorTheme.enable = true;
+    stylix.targets = {
+      firefox = {
+        enable = true;
+        profileNames = [ "default" ];
+        colorTheme.enable = true;
+      };
+      #qt = {
+      #  enable = true;
+      #  platform = "qtct"; # get rid of "kde6 unsupported" message
+      #};
     };
   };
 }

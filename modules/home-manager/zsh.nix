@@ -1,16 +1,27 @@
-{ config, lib, ... }: 
+{ config, pkgs, lib, ... }:
 {
   options = {
-    machine.bash.enable = lib.mkEnableOption "";
+    machine.zsh.enable = lib.mkEnableOption "";
   };
 
-  config = lib.mkIf config.machine.bash.enable {
-    programs.bash = { 
+  config = lib.mkIf config.machine.zsh.enable {
+    programs.zsh = {
       enable = true;
       enableCompletion = true;
-      historyFile = "$HOME/.local/state/bash_history";
-      
-      initExtra = ''
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+
+      history = {
+        path = "$HOME/.local/state/zsh_history";
+        size = 10000;
+        save = 10000;
+        share = true;
+        expireDuplicatesFirst = true;
+        ignoreDups = true;
+        ignoreSpace = true;
+      };
+
+      initContent = ''
         export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file $HOME/.config/fd/ignore . $HOME'
         export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
         export FZF_ALT_C_COMMAND='fd --type d --hidden --ignore-file $HOME/.config/fd/ignore . $HOME'
