@@ -2,10 +2,10 @@
 {
   options = {
     machine.hyprland.enable = lib.mkEnableOption "";
-    machine.hyprland.animations.enable = mkEnableOption "" // {
+    machine.hyprland.animations.enable = lib.mkEnableOption "" // {
       default = true;
     };
-    machine.hyprland.decorations.enable = mkEnableOption "" // {
+    machine.hyprland.decorations.enable = lib.mkEnableOption "" // {
       default = true;
     };
   };
@@ -17,9 +17,7 @@
       settings = {
         # add snapping windows settings
         # add groups settings
-        monitor = {
-          ", preferred, auto, 1"
-        };
+        monitor = ", preferred, auto, 1";
         
         general = {
           "col.active_border" = lib.mkForce "rgba(${config.lib.stylix.colors.base02}ff) rgba(${config.lib.stylix.colors.base02}ff)";
@@ -35,7 +33,7 @@
           hover_icon_on_border = true;
           
           layout = "master";
-          allow_tearing = true # add an immediate window rule to make sure hyprland will tear it (also test if it works pls)
+          allow_tearing = true; # add an immediate window rule to make sure hyprland will tear it (also test if it works pls)
         };
 
         decoration = lib.mkIf config.machine.hyprland.decorations.enable {
