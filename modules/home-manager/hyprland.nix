@@ -11,6 +11,8 @@
   };
 
   config = lib.mkIf config.machine.hyprland.enable {
+    machine.mako.enable = true;
+
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = false;
@@ -49,9 +51,9 @@
           # on defaults except 'inactive'
           dim_modal = true;
           dim_inactive = true;
-          dim_strength = 0.5;
+          dim_strength = 0.2;
           dim_special = 0.2;
-          dim_around = 0.4;
+          dim_around = 0.3;
 
           blur = {
             enabled = true;
@@ -96,7 +98,8 @@
 
         input = {
           kb_layout = "de";
-          repeat_rate = 25;
+          kb_options = lib.mkIf config.machine.laptop.enable "altwin:swap_alt_win";
+          repeat_rate = 30;
           repeat_delay = 400;
           
           sensitivity = 0.0;
@@ -116,32 +119,57 @@
           workspace_swipe = true;
         };
 
-        dwindle = {
-          pseudotile = true;
-          preserve_split = true;
-          force_split = 2;
-        };
-
         master = {
-          new_status = "master";
+          new_status = "slave";
+          orientation = "left";
+          new_on_top = false;
+          mfact = 0.55;
         };
 
         "$mod" = "SUPER";
-        bind = [
+        bindr = [
           "$mod, Q, killactive,"
-          
-          "$mod, Return, exec, ghostty"
+          "$mod, F, fullscreen,"
+          "$mod, W, togglefloating,"
+
+          "$mod, T, exec, ghostty"
           "$mod, B, exec, firefox"
+          "$mod, D, exec, rofi -show drun"
+          "$mod, O, Obsidian, exec, obsidian -disable-gpu"
+
+          "$mod TAB, layoutmsg, cyclenext"
+          "$mod SHIFT, TAB, layoutmsg, cycleprev"
+          "$mod, CTRL, TAB, layoutmsg, swapwithmaster" 
           
           "$mod, 1, workspace, 1"
           "$mod, 2, workspace, 2"
           "$mod, 3, workspace, 3"
           "$mod, 4, workspace, 4"
           "$mod, 5, workspace, 5"
+          "$mod, 1, movetoworkspace, 1"
+          "$mod, 2, movetoworkspace, 2"
+          "$mod, 3, movetoworkspace, 3"
+          "$mod, 4, movetoworkspace, 4"
+          "$mod, 5, movetoworkspace, 5"
+          
+          "$mod , S, workspace, special"
+          "$mod SHIFT, S, movetoworkspace, special"
+
+          "$mod, left, movefocus, l"
+          "$mod, right, movefocus, r"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
         ];
         bindm = [
           "$mod, mouse:272, movewindow"
           "$mod, mouse:273, resizewindow"
+        ];
+        
+        # add opacity 1 for videos
+        windowrule = [
+          "suppressevent maximize, class:.*"
+          "noscreenshare, class:^([Bb]itwarden)$"
+          "noscreenshare, class:^([Tt]hunderbird)$"
         ];
 
         misc = {

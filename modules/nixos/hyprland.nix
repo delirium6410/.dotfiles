@@ -23,13 +23,8 @@
     };
 
     environment.sessionVariables = {
-      #XDG_CURRENT_DESKTOP = "wayland";
-      #XDG_SESSION_DESKTOP = "wayland";
-      #XDG_SESSION_TYPE = "wayland";
       NIXOS_OZONE_WL = "1";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
-      GDK_SCALE = "1";
-      GDK_DPI_SCALE = "1";
     };
   };
 }
