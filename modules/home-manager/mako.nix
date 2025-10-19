@@ -7,9 +7,12 @@
   config = lib.mkIf config.machine.mako.enable {
     services.mako = {
       enable = true;
-      anchor = "top-right";
-      borderRadius = 0;
-      defaultTimeout = 5000;
+      settings = {
+        anchor = "top-right";
+        icons = true;
+        border-radius = 0;
+        default-timeout = 5000;
+      };
     };
   };
 }
