@@ -11,6 +11,7 @@
   machine.vscode.enable = true;
   machine.stylix.enable = true;
   machine.yubikey-touch-detector.enable = true;
+  machine.hyprland.enable = true;
   #machine.ssh.enable = true;
 
   home = {
