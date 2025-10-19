@@ -5,8 +5,8 @@
   };
 
   config = lib.mkIf config.machine.kde.enable {
-    machine.sddm.enable = true;
     machine.dolphin.enable = true;
+    machine.sddm.enable = true;
 
     services.desktopManager.plasma6.enable = true;
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
@@ -26,7 +26,6 @@
       kdePackages.kio-extras
       kdePackages.kio-fuse
       kdePackages.plasma-pa
-      protonvpn-gui
       eog
       clapper
     ];

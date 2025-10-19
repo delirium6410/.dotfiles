@@ -8,7 +8,7 @@
     stylix = {
       enable = true;
       autoEnable = true;
-      polarity = "dark";
+      polarity = "either";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
       fonts = {

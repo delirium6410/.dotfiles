@@ -10,7 +10,7 @@
   
   machine.cpu_intel.enable = true;
   #machine.gpu_intel.enable = true;
-
+  machine.hyprland.enable = true;
   machine.kde.enable = true;
   machine.stylix.enable = true;
 

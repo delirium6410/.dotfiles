@@ -7,6 +7,7 @@
 
   config = lib.mkMerge [
     (lib.mkIf config.machine.gpu_amd.enable {
+      programs.coolercontrol.enable = true;
       hardware.graphics = {
         enable = true;
         enable32Bit = true;
@@ -29,6 +30,7 @@
       # ];
     })
     (lib.mkIf config.machine.gpu_intel.enable {
+      programs.coolercontrol.enable = true;
       hardware.graphics = {
         enable = true;
         enable32Bit = true;      

@@ -5,34 +5,31 @@
   };
 
   config = lib.mkIf config.machine.hyprland.enable {
+    machine.dolphin.enable = true;
+    machine.sddm.enable = true;
+
     programs.hyprland = {
       enable = true;
+      withUWSM = true;
       xwayland.enable = true;
-    };
-    
-    programs.thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-        thunar-media-tags-plugin
-      ];
-    };
-    
-    programs.xfconf.enable = true;
-    services = {
-      gvfs.enable = true;
-      tumbler.enable = true;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
 
-    services.greetd = {
+    xdg.portal = {
       enable = true;
-      package = pkgs.greetd.tuigreet;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
-        };
-      };
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
+    };
+
+    environment.sessionVariables = {
+      XDG_CURRENT_DESKTOP = "wayland";
+      XDG_SESSION_DESKTOP = "wayland";
+      XDG_SESSION_TYPE = "wayland";
+      NIXOS_OZONE_WL = "1";
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      GDK_SCALE = "1";
+      GDK_DPI_SCALE = "1";
     };
   };
 }

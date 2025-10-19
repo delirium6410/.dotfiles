@@ -2,47 +2,165 @@
 {
   options = {
     machine.hyprland.enable = lib.mkEnableOption "";
+    machine.hyprland.animations.enable = mkEnableOption "" // {
+      default = true;
+    };
+    machine.hyprland.decorations.enable = mkEnableOption "" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.machine.hyprland.enable {
-    home.packages = with pkgs; [
-      mako
-    ];
-
-    programs.rofi = {
-      enable = true;
-      location = "center";
-      terminal = "ghostty";
-      extraConfig = {
-        modi = "drun,run";
-      };
-    };
-
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = false;
       settings = {
+        # add snapping windows settings
+        # add groups settings
+        monitor = {
+          ", preferred, auto, 1"
+        };
+        
         general = {
           "col.active_border" = lib.mkForce "rgba(${config.lib.stylix.colors.base02}ff) rgba(${config.lib.stylix.colors.base02}ff)";
           "col.inactive_border" = lib.mkForce "rgba(${config.lib.stylix.colors.base02}ff)";
+          
+          gaps_in = 5;
+          gaps_out = 10;
+          border_size = 2;
+          
+          no_border_on_floating = false;
+          resize_on_border = true;
+          extend_border_grab_area = 5;
+          hover_icon_on_border = true;
+          
+          layout = "master";
+          allow_tearing = true # add an immediate window rule to make sure hyprland will tear it (also test if it works pls)
         };
+
+        decoration = lib.mkIf config.machine.hyprland.decorations.enable {
+          # border_part_of_window = false; # try with/without
+
+          rounding = 0;
+          rounding_power = 1.0;
+
+          active_opacity = 1.0;
+          inactive_opacity = 1.0;
+          fullscreen_opacity = 1.0;
+          
+          # on defaults except 'inactive'
+          dim_modal = true;
+          dim_inactive = true;
+          dim_strength = 0.5;
+          dim_special = 0.2;
+          dim_around = 0.4;
+
+          blur = {
+            enabled = true;
+            size = 3;
+            passes = 3;
+          };
+
+          shadow = {
+              enabled = true;
+              range = 2;
+              render_power = 3;
+              color = lib.mkForce "rgba(${config.lib.stylix.colors.base02}ff)";
+          };
+        };
+
+        animations = lib.mkIf config.machine.hyprland.animations.enable {
+          enabled = true;
+          bezier = [
+            "easeOutQuint, 0.23, 1, 0.32, 1"
+            "easeInOutCubic, 0.65, 0.05, 0.36, 1"
+            "linear, 0, 0, 1, 1"
+            "almostLinear, 0.5, 0.5, 0.75, 1.0"
+            "quick, 0.15, 0, 0.1, 1"
+          ];          
+          animation = [
+            "global, 1, 10, default"
+            "border, 1, 5.39, easeOutQuint"
+            "windows, 1, 4.79, easeOutQuint"
+            "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
+            "windowsOut, 1, 1.49, linear, popin 87%"
+            "fadeIn, 1, 1.73, almostLinear"
+            "fadeOut, 1, 1.46, almostLinear"
+            "fade, 1, 3.03, quick"
+            "layers, 1, 3.81, easeOutQuint"
+            "layersIn, 1, 4, easeOutQuint, fade"
+            "layersOut, 1, 1.5, linear, fade"
+            "fadeLayersIn, 1, 1.79, almostLinear"
+            "fadeLayersOut, 1, 1.39, almostLinear"
+            "workspaces, 0, 0, ease"
+          ];
+        };
+
+        input = {
+          kb_layout = "de";
+          repeat_rate = 25;
+          repeat_delay = 400;
+          
+          sensitivity = 0.0;
+          follow_mouse = 1;
+
+          touchpad = {
+            natural_scroll = true;
+            disable_while_typing = true;
+            scroll_method = "2fg";
+          };
+
+          accel_profile = "flat";
+          numlock_by_default = true;
+        };
+        
+        gestures = {
+          workspace_swipe = true;
+        };
+
+        dwindle = {
+          pseudotile = true;
+          preserve_split = true;
+          force_split = 2;
+        };
+
+        master = {
+          new_status = "master";
+        };
+
+        "$mod" = "SUPER";
+        bind = [
+          "$mod, Q, killactive,"
+          
+          "$mod, Return, exec, ghostty"
+          "$mod, B, exec, firefox"
+          
+          "$mod, 1, workspace, 1"
+          "$mod, 2, workspace, 2"
+          "$mod, 3, workspace, 3"
+          "$mod, 4, workspace, 4"
+          "$mod, 5, workspace, 5"
+        ];
+        bindm = [
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
+        ];
+
+        misc = {
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          middle_click_paste = false;
+          focus_on_activate = true;
+          anr_missed_pings = 3;
+          vfr = true;
+          vrr = 2;
+        };
+        ecosystem = { 
+          no_update_news = true;
+          no_donation_nag = true;
+        };
+        autogenerated = 1;
       };
-    };
-    
-    home.sessionVariables = {
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      XDG_SESSION_TYPE = "wayland";
-      XDG_SESSION_DESKTOP = "Hyprland";
-
-      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      QT_QPA_PLATFORM = "wayland;xcb";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-
-      _JAVA_AWT_WM_NONREPARENTING = "1";
-      CLUTTER_BACKEND = "wayland";
-      GDK_BACKEND = "wayland,x11";
-
-      NIXOS_OZONE_WL = "1";
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    };
+    };    
   };
 }

@@ -13,7 +13,6 @@
     machine = {
       # add pam, yubikey, secrets, ssh, lanzaboote, persistence, disko
       bluetooth.enable = true;
-      fstrim.enable = true;
       hardening.enable = true;
       home-manager.enable = true;
       i18n.enable = true;
@@ -27,6 +26,7 @@
       zsh.enable = true;
     };      
     
+    services.fstrim.enable = true;
     services.hardware.bolt.enable = true;
     
     services.fwupd.enable = true;
