@@ -5,7 +5,7 @@
   };
 
   config = lib.mkIf config.machine.kde.enable {
-    machine.dolphin.enable = true;
+    machine.nemo.enable = true;
     machine.sddm.enable = true;
 
     services.desktopManager.plasma6.enable = true;
@@ -22,9 +22,6 @@
 
     environment.systemPackages = with pkgs; [
       kdePackages.kcalc
-      kdePackages.kio-admin
-      kdePackages.kio-extras
-      kdePackages.kio-fuse
       kdePackages.plasma-pa
       eog
       clapper

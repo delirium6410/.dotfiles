@@ -18,8 +18,9 @@
       };
       initrd = {
         systemd.enable = true;
-        verbose = true;
+        verbose = false;
       };
+      consoleLogLevel = 0;
     };
   };
 }

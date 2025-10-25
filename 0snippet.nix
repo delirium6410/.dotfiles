@@ -16,6 +16,8 @@
     };
   };
 
+  wayland.windowManager.hyprland.settings.bind = lib.mkIf config.machine.hyprland.enable [  ];
+  
   config = lib.mkMerge [
     (lib.mkIf config.machine.placeholder.enable {
 

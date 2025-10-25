@@ -13,7 +13,11 @@
   machine.stylix.enable = true;
   machine.yubikey-touch-detector.enable = true;
   machine.hyprland.enable = true;
+  machine.hyprland.animations.enable = true;
+  machine.hyprland.decorations.enable = true;
   #machine.ssh.enable = true;
+  machine.launchers.enable = true;
+
 
   home = {
     username = "admin";
@@ -21,10 +25,5 @@
     keyboard.variant = "de";
 
     stateVersion = "25.05";
-  };
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowUnfreePredicate = _: true;
   };
 }

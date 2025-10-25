@@ -71,6 +71,7 @@
     };
 
     home.shellAliases = {
+      dot = "cd .dotfiles";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";

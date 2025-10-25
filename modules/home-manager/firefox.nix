@@ -113,7 +113,9 @@
       };
     };
     
-   home.sessionVariables = {
+    wayland.windowManager.hyprland.settings.bind = lib.mkIf config.machine.hyprland.enable [ "$mod, B, exec, firefox" ];
+
+    home.sessionVariables = {
       BROWSER = "firefox";
     }; 
   };

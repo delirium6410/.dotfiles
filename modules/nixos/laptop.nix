@@ -7,7 +7,7 @@
   config = lib.mkIf config.machine.laptop.enable {
     machine.tlp.enable = true;
 
-    services.fprintd.enable = true; # fprintd-enroll
+    services.fprintd.enable = false; # fprintd-enroll, hella long boot times after enabling it
     services.thermald.enable = true;
 
     services.upower = {
@@ -23,14 +23,17 @@
 
     services.logind = {
       lidSwitch = "suspend";
-      lidSwitchExternalPower = "hibernate";
+      lidSwitchExternalPower = "suspend";
       extraConfig = ''
-        HandlePowerKey=poweroff
-        HibernateDelaySec=600
+        HandlePowerKey=suspend
+        HibernateDelaySec=500
         SuspendState=mem
       '';
     };
 
-    systemd.user.services.telephony_client.enable = false;
+    systemd.services = {
+      telephony_client.enable = false;
+      geoclue.enable = false;
+    };
   };
 }

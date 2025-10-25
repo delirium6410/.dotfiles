@@ -16,6 +16,14 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      wireplumber.enable = true;    
+         
+      # https://github.com/fufexan/nix-gaming
+      lowLatency = lib.mkIf config.machine.gaming.enable {
+        enable = true;
+        quantum = 64;
+        rate = 48000;
+      };
     };
   };
 }

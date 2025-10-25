@@ -12,5 +12,6 @@
     programs.wine = {
       enable = true;
     };
+    # latest wine, proton, mono
   };
 }

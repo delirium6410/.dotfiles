@@ -5,22 +5,27 @@
   };
 
   config = lib.mkIf config.machine.rofi.enable {
+    #stylix.targets.rofi.enable = false;
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;      
+      package = pkgs.rofi;      
       terminal = "ghostty";
-      
-      extraConfig = {
-        modes = "drun,run,window";        
-        drun-display-format = "{name}";
-        window-format = "{w} · {c} · {t}";
-        show-icons = true;
-        lines = 12; 
-        columns = 1; 
-        width = 50; 
-        matching = "fuzzy";
-        case-sensitive = false;
-      };
+    };
+
+    services.cliphist = {
+      enable = true;
+    };
+    
+    home.packages = with pkgs; [
+      wl-clipboard-rs
+    ];
+
+    wayland.windowManager.hyprland.settings = lib.mkIf config.machine.hyprland.enable {
+      bind = [ 
+        "$mod, F, exec, pkill rofi || rofi -show drun"
+        "$mod, V, exec, pkill rofi || cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"        
+      ];
+      exec-once = "wl-paste --type text --watch cliphist store";
     };
   };
 }

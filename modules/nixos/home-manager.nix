@@ -6,6 +6,10 @@
 
   config = lib.mkIf config.machine.home-manager.enable {
     environment.systemPackages = [ pkgs.home-manager ];
-    home-manager.backupFileExtension = "hm-backup";
+    home-manager = {
+      backupFileExtension = "hm-backup";
+      useGlobalPkgs = true;
+      useUserPackages = true;
+    };
   };
 }

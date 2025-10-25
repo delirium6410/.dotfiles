@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }:
+# add pam, yubikey, secrets, ssh, lanzaboote, persistence, disko
 {
   options = {
     machine.core.enable = lib.mkEnableOption "";
@@ -11,7 +12,6 @@
     };
 
     machine = {
-      # add pam, yubikey, secrets, ssh, lanzaboote, persistence, disko
       bluetooth.enable = true;
       hardening.enable = true;
       home-manager.enable = true;
@@ -32,6 +32,6 @@
     services.fwupd.enable = true;
     hardware.enableRedistributableFirmware = true;
 
-    boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
   };
 }

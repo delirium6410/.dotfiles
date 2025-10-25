@@ -8,7 +8,7 @@
     stylix = {
       enable = true;
       autoEnable = true;
-      polarity = "dark"; # either is also an option and should be set and configured soon
+      polarity = "dark";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
       fonts = {
@@ -40,8 +40,17 @@
         enable = true;
         package = pkgs.whitesur-icon-theme;
         dark = "WhiteSur-dark";
+        light = "WhiteSur";
       };
-
+      
+      targets = {
+        plymouth = {
+          enable = true;
+          logo = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+          logoAnimated = false;
+        };
+      };
+        
       homeManagerIntegration = {
         autoImport = true;
         followSystem = true;

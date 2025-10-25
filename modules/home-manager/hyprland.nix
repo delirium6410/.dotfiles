@@ -13,14 +13,12 @@
   config = lib.mkIf config.machine.hyprland.enable {
     machine.mako.enable = true;
     machine.rofi.enable = true;
-
+    
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.enable = false;
+      systemd.enable = true;
       settings = {
-        # add snapping windows settings
-        # add groups settings
-        monitor = ", preferred, auto, 1";
+        monitor = lib.mkDefault ", preferred, auto, 1";
         
         general = {
           "col.active_border" = lib.mkForce "rgba(${config.lib.stylix.colors.base02}ff) rgba(${config.lib.stylix.colors.base02}ff)";
@@ -36,65 +34,84 @@
           hover_icon_on_border = true;
           
           layout = "master";
-          allow_tearing = true; # add an immediate window rule to make sure hyprland will tear it (also test if it works pls)
+          allow_tearing = true;
         };
 
-        decoration = lib.mkIf config.machine.hyprland.decorations.enable {
-          # border_part_of_window = false; # try with/without
+        decoration = lib.mkMerge [
+          (lib.mkIf (!config.machine.hyprland.decorations.enable) {
+            rounding = 0;
+            active_opacity = 1.0;
+            inactive_opacity = 1.0;
+            fullscreen_opacity = 1.0;
+            dim_inactive = false;
 
-          rounding = 0;
-          rounding_power = 1.0;
-
-          active_opacity = 1.0;
-          inactive_opacity = 1.0;
-          fullscreen_opacity = 1.0;
+            blur = {
+              enabled = false;
+            };
+            
+            shadow = {
+              enabled = false;
+            };
+          })
           
-          # on defaults except 'inactive'
-          dim_inactive = true;
-          dim_strength = 0.2;
-          dim_special = 0.2;
-          dim_around = 0.3;
+          (lib.mkIf config.machine.hyprland.decorations.enable {
+            rounding = 0;
+            rounding_power = 1.0;
+            active_opacity = 1.0;
+            inactive_opacity = 1.0;
+            fullscreen_opacity = 1.0;
+            
+            dim_inactive = true;
+            dim_strength = 0.2;
+            dim_special = 0.2;
+            dim_around = 0.3;
 
-          blur = {
-            enabled = true;
-            size = 3;
-            passes = 3;
-          };
+            blur = {
+              enabled = true;
+              size = 3;
+              passes = 3;
+            };
 
-          shadow = {
+            shadow = {
               enabled = true;
               range = 2;
               render_power = 3;
               color = lib.mkForce "rgba(${config.lib.stylix.colors.base02}ff)";
-          };
-        };
+            };
+          })
+        ];
 
-        animations = lib.mkIf config.machine.hyprland.animations.enable {
-          enabled = true;
-          bezier = [
-            "easeOutQuint, 0.23, 1, 0.32, 1"
-            "easeInOutCubic, 0.65, 0.05, 0.36, 1"
-            "linear, 0, 0, 1, 1"
-            "almostLinear, 0.5, 0.5, 0.75, 1.0"
-            "quick, 0.15, 0, 0.1, 1"
-          ];          
-          animation = [
-            "global, 1, 10, default"
-            "border, 1, 5.39, easeOutQuint"
-            "windows, 1, 4.79, easeOutQuint"
-            "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-            "windowsOut, 1, 1.49, linear, popin 87%"
-            "fadeIn, 1, 1.73, almostLinear"
-            "fadeOut, 1, 1.46, almostLinear"
-            "fade, 1, 3.03, quick"
-            "layers, 1, 3.81, easeOutQuint"
-            "layersIn, 1, 4, easeOutQuint, fade"
-            "layersOut, 1, 1.5, linear, fade"
-            "fadeLayersIn, 1, 1.79, almostLinear"
-            "fadeLayersOut, 1, 1.39, almostLinear"
-            "workspaces, 0, 0, ease"
-          ];
-        };
+        animations = lib.mkMerge [
+          (lib.mkIf (!config.machine.hyprland.animations.enable) {
+            enabled = false;
+          })
+          (lib.mkIf config.machine.hyprland.animations.enable {
+            enabled = true;
+            bezier = [
+              "easeOutQuint, 0.23, 1, 0.32, 1"
+              "easeInOutCubic, 0.65, 0.05, 0.36, 1"
+              "linear, 0, 0, 1, 1"
+              "almostLinear, 0.5, 0.5, 0.75, 1.0"
+              "quick, 0.15, 0, 0.1, 1"
+            ];          
+            animation = [
+              "global, 1, 10, default"
+              "border, 1, 5.39, easeOutQuint"
+              "windows, 1, 4.79, easeOutQuint"
+              "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
+              "windowsOut, 1, 1.49, linear, popin 87%"
+              "fadeIn, 1, 1.73, almostLinear"
+              "fadeOut, 1, 1.46, almostLinear"
+              "fade, 1, 3.03, quick"
+              "layers, 1, 3.81, easeOutQuint"
+              "layersIn, 1, 4, easeOutQuint, fade"
+              "layersOut, 1, 1.5, linear, fade"
+              "fadeLayersIn, 1, 1.79, almostLinear"
+              "fadeLayersOut, 1, 1.39, almostLinear"
+              "workspaces, 0, 0, ease"
+            ];
+          })
+        ];
 
         input = {
           kb_layout = "de";
@@ -126,46 +143,48 @@
         };
 
         "$mod" = "SUPER";
+        
         bind = [
           "$mod, Q, killactive,"
-          "$mod, F, fullscreen,"
+          "$mod, ENTER, fullscreen,"
           "$mod, W, togglefloating,"
 
-          "$mod, T, exec, ghostty"
-          "$mod, B, exec, firefox"
-          "$mod, D, exec, rofi -show drun"
-          "$mod, O, exec, obsidian -disable-gpu"
+          "$mod, T, exec, ghostty"          
+          "$mod, E, exec, dolphin"
+          "$mod, O, exec, obsidian --disable-gpu"
 
-          "$mod, TAB, layoutmsg, cyclenext"
-          "$mod SHIFT, TAB, layoutmsg, swapwithmaster"
+          "$mod, left, movefocus, l"
+          "$mod, right, movefocus, r"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
 
           "$mod, 1, workspace, 1"
           "$mod, 2, workspace, 2"
           "$mod, 3, workspace, 3"
           "$mod, 4, workspace, 4"
           "$mod, 5, workspace, 5"
+          
           "$mod SHIFT, 1, movetoworkspace, 1"
           "$mod SHIFT, 2, movetoworkspace, 2"
           "$mod SHIFT, 3, movetoworkspace, 3"
           "$mod SHIFT, 4, movetoworkspace, 4"
           "$mod SHIFT, 5, movetoworkspace, 5"
-
-          "$mod, S, togglespecialworkspace,"
+                    
+          "$mod, S, togglespecialworkspace"
           "$mod SHIFT, S, movetoworkspace, special"
-
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
+          
+          "$mod, TAB, layoutmsg, cyclenext"
+          "$mod SHIFT, TAB, layoutmsg, swapwithmaster"
         ];
+        
         bindm = [
           "$mod, mouse:272, movewindow"
           "$mod, mouse:273, resizewindow"
         ];
         
-        # add opacity 1 for videos
         windowrulev2 = [
           "suppressevent maximize, class:.*"
+          
           "opacity 0.0 override, class:^(xwaylandvideobridge)$"
           "noanim, class:^(xwaylandvideobridge)$"
           "nofocus, class:^(xwaylandvideobridge)$"
@@ -181,10 +200,12 @@
           vfr = true;
           vrr = 2;
         };
+        
         ecosystem = { 
           no_update_news = true;
           no_donation_nag = true;
         };
+        
         autogenerated = 0;
       };
     };    

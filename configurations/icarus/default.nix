@@ -13,6 +13,9 @@
   machine.hyprland.enable = true;
   machine.kde.enable = true;
   machine.stylix.enable = true;
+  machine.gaming.enable = true;
+
+
 
   imports =
     [

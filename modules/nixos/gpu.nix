@@ -6,8 +6,9 @@
   };
 
   config = lib.mkMerge [
+    programs.coolercontrol.enable = true;
+    
     (lib.mkIf config.machine.gpu_amd.enable {
-      programs.coolercontrol.enable = true;
       hardware.graphics = {
         enable = true;
         enable32Bit = true;
@@ -30,11 +31,11 @@
       # ];
     })
     (lib.mkIf config.machine.gpu_intel.enable {
-      programs.coolercontrol.enable = true;
       hardware.graphics = {
         enable = true;
         enable32Bit = true;      
         extraPackages = with pkgs; [
+          intel-gpu-tools
           intel-media-driver
           intel-vaapi-driver
           intel-compute-runtime
@@ -58,6 +59,8 @@
 
       boot.initrd.kernelModules = [ "i915" ];
       boot.kernelModules = [ "i915" ];
+
+      # idk double check whether or not it's worth it
       boot.kernelParams = [
         "i915.enable_fbc=1"
         "i915.fastboot=1"

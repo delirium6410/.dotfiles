@@ -7,11 +7,7 @@
   config = lib.mkIf config.machine.bluetooth.enable {
     hardware.bluetooth = {
       enable = true;
-      powerOnBoot = lib.mkForce false;
+      powerOnBoot = lib.mkDefault false;
     };
-    
-    environment.systemPackages = with pkgs; [
-      bluez
-    ];
   };
 }

@@ -15,6 +15,10 @@
         "rd.systemd.show_status=false"
         "rd.udev.log_level=3"
         "udev.log_priority=3"
+        # plymouth and general removal of boot messages
+        "plymouth.ignore-serial-consoles"
+        "vt.global_cursor_default=0"
+        "nosgx"
       ];
     };
   };

@@ -2,12 +2,20 @@
 {
   options = {
     machine.i18n.enable = lib.mkEnableOption "";
+    machine.i18n.dualboot = lib.mkEnableOption "";
   };
 
   config = lib.mkIf config.machine.i18n.enable {
-    services.automatic-timezoned.enable = true;
-    networking.timeServers = ["pool.ntp.org"];
-    time.hardwareClockInLocalTime = true;
+    services.automatic-timezoned.enable = lib.mkDefault true;
+    services.timesyncd.enable = true;
+    networking.timeServers = [
+      "0.nixos.pool.ntp.org"
+      "1.nixos.pool.ntp.org"
+      "2.nixos.pool.ntp.org"
+      "3.nixos.pool.ntp.org"
+    ];
+
+    time.hardwareClockInLocalTime = lib.mkIf config.machine.i18n.dualboot true; 
     
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocales = [
