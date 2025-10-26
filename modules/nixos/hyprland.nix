@@ -5,7 +5,7 @@
   };
 
   config = lib.mkIf config.machine.hyprland.enable {
-    machine.dolphin.enable = true;
+    machine.thunar.enable = true;
     machine.sddm.enable = true;
 
     programs.hyprland = {
@@ -20,10 +20,11 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
       ];
+      config.common.default = "*";
+      xdgOpenUsePortal = true;
     };
 
     environment.systemPackages = with pkgs; [
-      xdg-utils
       eog
       clapper
     ];

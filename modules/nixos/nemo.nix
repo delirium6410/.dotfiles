@@ -1,4 +1,5 @@
 { config, pkgs, lib, ... }:
+# https://wiki.archlinux.org/title/File_manager_functionality#Additional_features
 {
   options = {
     machine.nemo.enable = lib.mkEnableOption "";

@@ -18,7 +18,12 @@
         # plymouth and general removal of boot messages
         "plymouth.ignore-serial-consoles"
         "vt.global_cursor_default=0"
+        # stalling boot for no reason
         "nosgx"
+      ];
+      blacklistedKernelModules = [ 
+        "8250" 
+        "8250_pci"
       ];
     };
   };

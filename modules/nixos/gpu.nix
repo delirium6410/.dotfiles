@@ -6,8 +6,9 @@
   };
 
   config = lib.mkMerge [
+    {
     programs.coolercontrol.enable = true;
-    
+    }
     (lib.mkIf config.machine.gpu_amd.enable {
       hardware.graphics = {
         enable = true;

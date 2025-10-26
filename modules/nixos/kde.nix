@@ -5,7 +5,7 @@
   };
 
   config = lib.mkIf config.machine.kde.enable {
-    machine.nemo.enable = true;
+    machine.dolphin.enable = true;
     machine.sddm.enable = true;
 
     services.desktopManager.plasma6.enable = true;

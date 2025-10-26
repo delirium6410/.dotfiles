@@ -2,10 +2,10 @@
 {
   options = {
     machine.hyprland.enable = lib.mkEnableOption "";
-    machine.hyprland.animations.enable = lib.mkEnableOption "" // {
+    machine.hyprland.animations = lib.mkEnableOption "" // {
       default = true;
     };
-    machine.hyprland.decorations.enable = lib.mkEnableOption "" // {
+    machine.hyprland.decorations = lib.mkEnableOption "" // {
       default = true;
     };
   };
@@ -16,7 +16,7 @@
     
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.enable = true;
+      systemd.enable = false;
       settings = {
         monitor = lib.mkDefault ", preferred, auto, 1";
         
@@ -38,7 +38,7 @@
         };
 
         decoration = lib.mkMerge [
-          (lib.mkIf (!config.machine.hyprland.decorations.enable) {
+          (lib.mkIf (!config.machine.hyprland.decorations) {
             rounding = 0;
             active_opacity = 1.0;
             inactive_opacity = 1.0;
@@ -54,7 +54,7 @@
             };
           })
           
-          (lib.mkIf config.machine.hyprland.decorations.enable {
+          (lib.mkIf config.machine.hyprland.decorations {
             rounding = 0;
             rounding_power = 1.0;
             active_opacity = 1.0;
@@ -82,10 +82,10 @@
         ];
 
         animations = lib.mkMerge [
-          (lib.mkIf (!config.machine.hyprland.animations.enable) {
+          (lib.mkIf (!config.machine.hyprland.animations) {
             enabled = false;
           })
-          (lib.mkIf config.machine.hyprland.animations.enable {
+          (lib.mkIf config.machine.hyprland.animations {
             enabled = true;
             bezier = [
               "easeOutQuint, 0.23, 1, 0.32, 1"

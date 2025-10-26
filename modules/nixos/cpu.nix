@@ -14,7 +14,6 @@
     (lib.mkIf config.machine.cpu_intel.enable {
       hardware.cpu.intel.updateMicrocode = true;
       environment.systemPackages = with pkgs; [ 
-        intel-ucode
         iucode-tool
       ];
       boot.kernelParams = [ "intel_pstate=active" ];

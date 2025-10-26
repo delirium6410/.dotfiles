@@ -1,4 +1,4 @@
-{ config, lib, ... }: 
+{ config, lib, pkgs, ... }: 
 {
   options = {
     machine.xdg.enable = lib.mkEnableOption "";
@@ -78,5 +78,6 @@
         ];
       };
     };
+    home.packages = with pkgs; [ xdg-utils ];
   };
 }

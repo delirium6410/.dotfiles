@@ -35,13 +35,6 @@
         name = "Bibata-Modern-Ice";
         size = 24;
       };
-
-      iconTheme = {
-        enable = true;
-        package = pkgs.whitesur-icon-theme;
-        dark = "WhiteSur-dark";
-        light = "WhiteSur";
-      };
       
       targets = {
         plymouth = {
@@ -50,7 +43,7 @@
           logoAnimated = false;
         };
       };
-        
+
       homeManagerIntegration = {
         autoImport = true;
         followSystem = true;

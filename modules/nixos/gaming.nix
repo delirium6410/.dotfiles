@@ -5,7 +5,7 @@
   };
 
   config = lib.mkIf config.machine.gaming.enable {  
-    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_xanmod_latest;
+    boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
     programs.gamescope = {
       enable = true;

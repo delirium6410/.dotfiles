@@ -2,17 +2,12 @@
 # https://wiki.archlinux.org/title/File_manager_functionality#Additional_features
 {
   options = {
-    machine.thunar.enable = lib.mkEnableOption "";
+    machine.nautilus.enable = lib.mkEnableOption "";
   };
 
-  config = lib.mkIf config.machine.thunar.enable {
-    programs.thunar.enable = true;
-    programs.thunar.plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-    
+  config = lib.mkIf config.machine.nautilus.enable {
     environment.systemPackages = with pkgs; [
+      nautilus
       ffmpegthumbnailer
       
       p7zip
@@ -22,9 +17,10 @@
 
       ffmpeg
       samba4Full
+      #tracker
     ];
     
     services.gvfs.enable = true;
-    services.tumbler.enable = true;
+    #programs.dconf.enable = true;
   };
 }

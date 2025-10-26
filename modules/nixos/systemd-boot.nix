@@ -22,5 +22,7 @@
       };
       consoleLogLevel = 0;
     };
+    systemd.extraConfig = "DefaultTimeoutStopSec=10s";
+    #systemd.services.systemd-udev-settle.enable = false;
   };
 }
