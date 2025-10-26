@@ -2,6 +2,7 @@
 {
   options = {
     machine.gpu_amd.enable = lib.mkEnableOption "";
+    machine.gpu_amd.lact = lib.mkEnableOption "";
     machine.gpu_intel.enable = lib.mkEnableOption "";
   };
 
@@ -24,12 +25,14 @@
         LIBVA_DRIVER_NAME = "radeonsi";
         VDPAU_DRIVER = "radeonsi";
       };
+    })
+    (lib.mkIf config.machine.gpu_amd.lact {
+      # unstable only will fix someday
+      #services.lact.enable = true;
 
-      # services.lact.enable = true;
-
-      # boot.kernelParams = [
-      #   "amdgpu.ppfeaturemask=0x4000"
-      # ];
+      #boot.kernelParams = [
+      #  "amdgpu.ppfeaturemask=0x4000"
+      #];
     })
     (lib.mkIf config.machine.gpu_intel.enable {
       hardware.graphics = {

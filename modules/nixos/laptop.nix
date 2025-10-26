@@ -7,7 +7,7 @@
   config = lib.mkIf config.machine.laptop.enable {
     machine.tlp.enable = true;
 
-    services.fprintd.enable =lib.mkForce false; # fprintd-enroll, hella long boot times after enabling it
+    services.fprintd.enable = lib.mkForce false; # fprintd-enroll, hella long boot times after enabling it
     services.thermald.enable = true;
 
     services.upower = {

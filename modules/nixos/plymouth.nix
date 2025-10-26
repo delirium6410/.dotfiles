@@ -22,6 +22,7 @@
         "nosgx"
       ];
       blacklistedKernelModules = [ 
+        # old serial port kernel modules, took 4sec off boot time :)
         "8250" 
         "8250_pci"
       ];

@@ -24,12 +24,12 @@
       nixpkgs.lib.genAttrs ["x86_64-linux"] (system: function nixpkgs.legacyPackages.${system});
   in {
     nixosConfigurations = with nixpkgs.lib;
-      pipe ./configurations [
+      pipe ./hosts [
         builtins.readDir
         (mapAttrs' (hostName: _:
           nameValuePair hostName (nixosSystem {
             specialArgs = {inherit inputs outputs;};
-            modules = [./configurations/${hostName}] ++ attrsets.attrValues self.nixosModules;
+            modules = [./hosts/${hostName}] ++ attrsets.attrValues self.nixosModules;
           })))
       ];
 
@@ -66,11 +66,11 @@
       ];
 
     homeConfigurations = with nixpkgs.lib;
-      pipe ./configurations [
+      pipe ./hosts [
         builtins.readDir
         (mapAttrs' (hostName: _:
           nameValuePair hostName (
-            pipe ./configurations/${hostName}/users [
+            pipe ./hosts/${hostName}/users [
               builtins.readDir
               builtins.attrNames
             ]
@@ -83,7 +83,7 @@
                 pkgs = self.nixosConfigurations.${hostName}.pkgs;
                 extraSpecialArgs = {inherit inputs outputs;};
                 modules = [
-                  ./configurations/${hostName}/users/${username}/home.nix
+                  ./hosts/${hostName}/users/${username}/home.nix
                 ] ++ attrsets.attrValues self.homeModules;
               };
             }))

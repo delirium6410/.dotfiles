@@ -23,6 +23,11 @@
       consoleLogLevel = 0;
     };
     systemd.extraConfig = "DefaultTimeoutStopSec=10s";
-    #systemd.services.systemd-udev-settle.enable = false;
+
+    # don't wait for all udev events to be processed
+    # before continuing boot process decreases boot time
+    # but double check if it causes problems
+    # systemctl --failed / journalctl -b | grep -i "failed\|error"
+    systemd.services.systemd-udev-settle.enable = false;
   };
 }

@@ -13,9 +13,7 @@
     })
     (lib.mkIf config.machine.cpu_intel.enable {
       hardware.cpu.intel.updateMicrocode = true;
-      environment.systemPackages = with pkgs; [ 
-        iucode-tool
-      ];
+      environment.systemPackages = with pkgs; [ iucode-tool ];
       boot.kernelParams = [ "intel_pstate=active" ];
       boot.kernelModules = [ "kvm-intel" ];
     })
