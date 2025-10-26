@@ -77,6 +77,7 @@
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
       
+      up = "nix flake update";
       ns = "nix-shell -p";
 
       cat = "bat";

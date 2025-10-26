@@ -6,8 +6,10 @@
 
   config = lib.mkIf config.machine.launchers.enable {
     home.packages = with pkgs; [ 
-      lutris 
       heroic
     ];
+    programs.lutris = {
+      enable = true;
+    };
   };
 }

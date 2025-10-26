@@ -25,6 +25,9 @@
       kdePackages.plasma-pa
       eog
       clapper
+      # compatability since sometimes icons are randomly missing, seems to have fixed it
+      kdePackages.breeze-icons
+      adwaita-icon-theme
     ];
     
     environment.sessionVariables = {

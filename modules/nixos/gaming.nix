@@ -37,6 +37,11 @@
       };
     };
     
+    # only temporarily, mbedtls is EOL
+    nixpkgs.config.permittedInsecurePackages = [
+      "mbedtls-2.28.10"
+    ];
+
     # https://codeberg.org/fabiscafe/game-devices-udev
     services = {
       libinput.enable = true;
