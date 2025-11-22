@@ -1,0 +1,3 @@
+- use a uniform way to configure, no mixing of symlinking, nix options and so options
+- try importing colorscheme from stylix json/css
+- 
