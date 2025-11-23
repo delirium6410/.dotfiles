@@ -16,7 +16,7 @@ in
 
   config = mkIf cfg.enable {
     nixpkgs.config.allowUnfreePredicate = pkg: 
-      builtins.elem pkg.pname config.modules.unfreePackages;
+      builtins.elem (lib.getName pkg) config.modules.unfreePackages;
     nix = {
       daemonCPUSchedPolicy = "idle";
       daemonIOSchedClass = "idle";
