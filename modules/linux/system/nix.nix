@@ -65,11 +65,6 @@ in
       };
     };
     
-    # Better Eval Time (USE --offline to skip download stage hen rebuilding TIL)
-    manual.html.enable = false;
-    manual.manpages.enable = false;
-    manual.json.enable = false;
-
     documentation.nixos.enable = false;
 
     programs.nix-ld = {
@@ -93,6 +88,12 @@ in
     };
     
     system.stateVersion = "25.05";    
-    home-manager.users.${username}.home.stateVersion = "25.05";
+    home-manager.users.${username} = {
+      # Better Eval Time (USE --offline to skip download stage hen rebuilding TIL)
+      manual.html.enable = false;
+      manual.manpages.enable = false;
+      manual.json.enable = false;
+      home.stateVersion = "25.05";
+    };
   };
 }
